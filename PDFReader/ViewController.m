@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "PDFReaderViewController.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
+    
+    UIButton *showBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    showBtn.frame = CGRectMake(0, 0, 100, 50);
+    showBtn.center = self.view.center;
+    [showBtn setTitle:@"show" forState:UIControlStateNormal];
+    [showBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [showBtn addTarget:self action:@selector(onClickShow) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:showBtn];
+}
+
+- (void)onClickShow{
+    [self.navigationController pushViewController:[[PDFReaderViewController alloc] init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
